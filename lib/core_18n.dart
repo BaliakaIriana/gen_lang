@@ -1,18 +1,18 @@
 library core_18n;
 
 import 'dart:io';
-import 'package:gen_lang/extra_json_message_tool.dart';
-import 'package:gen_lang/generate_i18n_dart.dart';
-import 'package:gen_lang/generate_message_all.dart';
-import 'package:gen_lang/print_tool.dart';
-import 'package:gen_lang/extra_json_file_tool.dart';
+import 'package:gen_lang_updated/extra_json_message_tool.dart';
+import 'package:gen_lang_updated/generate_i18n_dart.dart';
+import 'package:gen_lang_updated/generate_message_all.dart';
+import 'package:gen_lang_updated/print_tool.dart';
+import 'package:gen_lang_updated/extra_json_file_tool.dart';
 
 import 'package:path/path.dart' as path;
 
 class I18nOption {
-  String sourceDir;
-  String templateLocale;
-  String outputDir;
+  String? sourceDir;
+  String? templateLocale;
+  String? outputDir;
 
   @override
   String toString() {
@@ -32,8 +32,8 @@ void handleGenerateI18nFiles(I18nOption option) async {
   List<FileSystemEntity> files =
       await dirContents(Directory(path.join(current.path, option.sourceDir)));
   Map<String, FileSystemEntity> validFilesMap = getValidStringFileMap(files);
-  FileSystemEntity defaultTemplateLang =
-      getDefaultTemplateLang(validFilesMap, option.templateLocale);
+  FileSystemEntity? defaultTemplateLang =
+      getDefaultTemplateLang(validFilesMap, option.templateLocale ?? 'en');
   if (null != defaultTemplateLang) {
     Map<String, Message> defaultJsonKeyMessageMap =
         await generateJsonKeyMessageMap(File(defaultTemplateLang.path));
