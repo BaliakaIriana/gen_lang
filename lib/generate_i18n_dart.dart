@@ -16,7 +16,7 @@ class S {
   static const GeneratedLocalizationsDelegate delegate = GeneratedLocalizationsDelegate();
 
   static S of(BuildContext context) {
-    return Localizations.of<S>(context, S) ?? S(;
+    return Localizations.of<S>(context, S) ?? S();
   }
   
   static Future<S> load(Locale locale) {
